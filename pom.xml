@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.traveliko</groupId>
         <artifactId>traveliko-parent</artifactId>
-        <version>2.0.3-SNAPSHOT</version>
+        <version>2.0.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>siteminder-cxf-client</artifactId>
@@ -15,6 +15,13 @@
     <version>2.0.3-SNAPSHOT</version>
     <name>Siteminder CXF Client (JAR)</name>
 
+	<scm>
+        <connection>scm:git:https://bjornharvold@bitbucket.org/travelikodevelopment/siteminder-cxf-client.git</connection>
+        <developerConnection>scm:git:https://bjornharvold@bitbucket.org/travelikodevelopment/siteminder-cxf-client.git</developerConnection>
+        <url>https://bjornharvold@bitbucket.org/travelikodevelopment/siteminder-cxf-client.git</url>
+        <tag>HEAD</tag>
+    </scm>
+	
     <build>
 
         <resources>

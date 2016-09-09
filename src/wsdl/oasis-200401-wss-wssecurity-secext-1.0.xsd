@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS's procedures with respect to rights in OASIS specifications can be found at the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementors or users of this specification, can be obtained from the OASIS Executive Director.
+OASIS invites any interested party to bring to its attention any copyrights, patents or patent applications, or other proprietary rights which may cover technology that may be required to implement this specification. Please address the information to the OASIS Executive Director.
+Copyright © OASIS Open 2002-2004. All Rights Reserved.
+This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this paragraph are included on all such copies and derivative works. However, this document itself does not be modified in any way, such as by removing the copyright notice or references to OASIS, except as needed for the purpose of developing OASIS specifications, in which case the procedures for copyrights defined in the OASIS Intellectual Property Rights document must be followed, or as required to translate it into languages other than English.
+The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
+This document and the information contained herein is provided on an “AS IS” basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+-->
+<xs:schema targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified" blockDefault="#all" version="0.2">
+	<xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" schemaLocation="oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+	<xs:complexType name="AttributedString">
+		<xs:annotation>
+			<xs:documentation>This type represents an element with arbitrary attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="wsu:Id"/>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PasswordString">
+		<xs:annotation>
+			<xs:documentation>This type is used for password elements per Section 4.1.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="wsse:AttributedString">
+				<xs:attribute name="Type" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="EncodedString">
+		<xs:annotation>
+			<xs:documentation>This type is used for elements containing stringified binary data.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="wsse:AttributedString">
+				<xs:attribute name="EncodingType" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="UsernameTokenType">
+		<xs:annotation>
+			<xs:documentation>This type represents a username token per Section 4.1</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Username" type="wsse:AttributedString"/>
+			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute ref="wsu:Id"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="BinarySecurityTokenType">
+		<xs:annotation>
+			<xs:documentation>A security token that is encoded in binary</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="wsse:EncodedString">
+				<xs:attribute name="ValueType" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="KeyIdentifierType">
+		<xs:annotation>
+			<xs:documentation>A security token key identifier</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="wsse:EncodedString">
+				<xs:attribute name="ValueType" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="tUsage">
+		<xs:annotation>
+			<xs:documentation>Typedef to allow a list of usages (as URIs).</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="xs:anyURI"/>
+    </xs:simpleType>
+	<xs:attribute name="Usage" type="wsse:tUsage">
+        <xs:annotation>
+			<xs:documentation>This global attribute is used to indicate the usage of a referenced or indicated token within the containing context</xs:documentation>
+		</xs:annotation>
+    </xs:attribute>
+	<xs:complexType name="ReferenceType">
+		<xs:annotation>
+			<xs:documentation>This type represents a reference to an external security token.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="URI" type="xs:anyURI"/>
+		<xs:attribute name="ValueType" type="xs:anyURI"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="EmbeddedType">
+		<xs:annotation>
+			<xs:documentation>This type represents a reference to an embedded security token.</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:any processContents="lax"/>
+		</xs:choice>
+		<xs:attribute name="ValueType" type="xs:anyURI"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="SecurityTokenReferenceType">
+		<xs:annotation>
+			<xs:documentation>This type is used reference a security token.</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:any processContents="lax"/>
+		</xs:choice>
+		<xs:attribute ref="wsu:Id"/>
+		<xs:attribute ref="wsse:Usage"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="SecurityHeaderType">
+		<xs:annotation>
+			<xs:documentation>This complexType defines header block to use for security-relevant data directed at a specific SOAP actor.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The use of "any" is to allow extensibility and different forms of security data.</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="TransformationParametersType">
+		<xs:annotation>
+			<xs:documentation>This complexType defines a container for elements to be specified from any namespace as properties/parameters of a DSIG transformation.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The use of "any" is to allow extensibility from any namespace.</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:element name="UsernameToken" type="wsse:UsernameTokenType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines the wsse:UsernameToken element per Section 4.1.</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="BinarySecurityToken" type="wsse:BinarySecurityTokenType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines the wsse:BinarySecurityToken element per Section 4.2.</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="Reference" type="wsse:ReferenceType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines a security token reference</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="Embedded" type="wsse:EmbeddedType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines a security token embedded reference</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="KeyIdentifier" type="wsse:KeyIdentifierType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines a key identifier reference</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="SecurityTokenReference" type="wsse:SecurityTokenReferenceType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines the wsse:SecurityTokenReference per Section 4.3.</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="Security" type="wsse:SecurityHeaderType">
+		
+        <xs:annotation>
+			<xs:documentation>This element defines the wsse:Security SOAP header element per Section 4.</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="TransformationParameters" type="wsse:TransformationParametersType">
+		
+        <xs:annotation>
+			<xs:documentation>This element contains properties for transformations from any namespace, including DSIG.</xs:documentation>
+		</xs:annotation>
+    </xs:element>
+	<xs:element name="Password" type="wsse:PasswordString"/>
+	<xs:element name="Nonce" type="wsse:EncodedString"/>
+	<xs:simpleType name="FaultcodeEnum">
+		<xs:restriction base="xs:QName">
+			<xs:enumeration value="wsse:UnsupportedSecurityToken"/>
+			<xs:enumeration value="wsse:UnsupportedAlgorithm"/>
+			<xs:enumeration value="wsse:InvalidSecurity"/>
+			<xs:enumeration value="wsse:InvalidSecurityToken"/>
+			<xs:enumeration value="wsse:FailedAuthentication"/>
+			<xs:enumeration value="wsse:FailedCheck"/>
+			<xs:enumeration value="wsse:SecurityTokenUnavailable"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

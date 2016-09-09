@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2015. Traveliko
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.traveliko</groupId>
+        <artifactId>traveliko-parent</artifactId>
+        <version>2.0.3-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>siteminder-cxf-client</artifactId>
+    <packaging>jar</packaging>
+    <version>2.0.3-SNAPSHOT</version>
+    <name>Siteminder CXF Client (JAR)</name>
+
+    <build>
+
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/wsdl</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <!-- TODO Only needs to be enabled when we upgrade Siteminder's WSDL version -->
+
+            <!--
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <genJWS>false</genJWS>
+                            <wsdlDirectory>${basedir}/src/wsdl</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>siteconnect.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>classpath:cxf/siteconnect.wsdl</wsdlLocation>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+
+        </plugins>
+
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${apache.cxf.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${apache.cxf.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-ws-security</artifactId>
+            <version>${apache.cxf.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+    <properties>
+        <!-- ><sideminder.version>Unknown</siteminder.version> -->
+    </properties>
+</project>

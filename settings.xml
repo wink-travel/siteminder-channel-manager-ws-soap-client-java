@@ -1,0 +1,28 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">			  
+	<servers>
+	  
+	  <!-- For connecting with AWS S3 -->
+	  <server>
+          <id>traveliko-releases</id>
+          <username>${env.AWS_ACCESS_KEY_ID}</username>
+          <password>${env.AWS_SECRET_KEY)</password>
+      </server>
+	  <server>
+          <id>traveliko-snapshots</id>
+          <username>${env.AWS_ACCESS_KEY_ID}</username>
+          <password>${env.AWS_SECRET_KEY}</password>
+      </server>
+	  
+	  <!-- For connecting with Bitbucket -->
+	  <server>
+          <id>bitbucket.org</id>
+          <username>${env.BB_USERNAME}</username>
+          <password>${env.BB_PASSWORD}</password>
+      </server>
+	  
+	</servers>
+	
+</settings>

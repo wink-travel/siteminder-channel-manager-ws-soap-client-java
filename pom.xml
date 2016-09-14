@@ -5,7 +5,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-	<groupId>com.traveliko</groupId>
+    <groupId>com.traveliko</groupId>
     <artifactId>siteminder-cxf-client</artifactId>
     <packaging>jar</packaging>
     <version>2.0.6-SNAPSHOT</version>
@@ -28,14 +28,14 @@
             </roles>
         </developer>
     </developers>
-	
-	<scm>
+
+    <scm>
         <connection>scm:git:https://bitbucket.org/travelikodevelopment/siteminder-cxf-client.git</connection>
         <developerConnection>scm:git:https://bitbucket.org/travelikodevelopment/siteminder-cxf-client.git</developerConnection>
         <url>https://bitbucket.org/travelikodevelopment/siteminder-cxf-client.git</url>
         <tag>HEAD</tag>
     </scm>
-	
+
     <build>
 
         <resources>
@@ -74,86 +74,98 @@
             </plugin>
             -->
 
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-scm-plugin</artifactId>
-	                <version>${maven.scm.plugin.version}</version>
-	                <configuration>
-	                    <connectionType>developerConnection</connectionType>
-	                </configuration>
-	            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>${maven.scm.plugin.version}</version>
+                <configuration>
+                    <connectionType>developerConnection</connectionType>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.deploy.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven.release.plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>true</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                    <connectionUrl>${project.scm.developerConnection}</connectionUrl>
+                </configuration>
+            </plugin>
             
-				<plugin>
-			        <groupId>org.apache.maven.plugins</groupId>
-			        <artifactId>maven-deploy-plugin</artifactId>
-			        <version>${maven.deploy.plugin.version}</version>
-			      </plugin>
-				  
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-release-plugin</artifactId>
-	                <version>${maven.release.plugin.version}</version>
-	                <configuration>
-	                    <autoVersionSubmodules>true</autoVersionSubmodules>
-	                    <useReleaseProfile>true</useReleaseProfile>
-	                    <releaseProfiles>release</releaseProfiles>
-	                    <goals>deploy</goals>
-	                    <connectionUrl>${project.scm.developerConnection}</connectionUrl>
-	                </configuration>
-	            </plugin>
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.2.3</version>
+            </plugin>
 
-	            <plugin>
-	                <groupId>org.codehaus.mojo</groupId>
-	                <artifactId>buildnumber-maven-plugin</artifactId>
-	                <version>${buildnumber.maven.plugin.version}</version>
-	                <configuration>
-	                    <shortRevisionLength>7</shortRevisionLength>
-	                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
-	                    <doCheck>false</doCheck>
-	                    <doUpdate>false</doUpdate>
-	                    <format>{0,date,yyyyMMdd-HHmmss}-{1}</format>
-	                    <items>
-	                        <item>timestamp</item>
-	                        <item>scmVersion</item>
-	                    </items>
-	                </configuration>
-	                <executions>
-	                    <execution>
-	                        <phase>validate</phase>
-	                        <goals>
-	                            <goal>create</goal>
-	                        </goals>
-	                    </execution>
-	                </executions>
-	            </plugin>
-	            <plugin>
-	                <artifactId>maven-compiler-plugin</artifactId>
-	                <version>${maven.compiler.plugin.version}</version>
-	                <configuration>
-	                    <source>${java.version}</source>
-	                    <target>${java.version}</target>
-	                    <encoding>${project.build.sourceEncoding}</encoding>
-	                </configuration>
-	            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
 
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-resources-plugin</artifactId>
-	                <version>${maven.resources.plugin.version}</version>
-	                <configuration>
-	                    <encoding>${project.build.sourceEncoding}</encoding>
-	                </configuration>
-	            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>${buildnumber.maven.plugin.version}</version>
+                <configuration>
+                    <shortRevisionLength>7</shortRevisionLength>
+                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <format>{0,date,yyyyMMdd-HHmmss}-{1}</format>
+                    <items>
+                        <item>timestamp</item>
+                        <item>scmVersion</item>
+                    </items>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
 
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-surefire-plugin</artifactId>
-	                <version>${maven.surefire.plugin.version}</version>
-	            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+            </plugin>
         </plugins>
 
         <extensions>
-			<!-- For downloading S3 artifacts -->
+            <!-- For downloading S3 artifacts -->
             <extension>
                 <groupId>org.springframework.build</groupId>
                 <artifactId>aws-maven</artifactId>
@@ -185,22 +197,22 @@
 
     <properties>
         <!-- ><sideminder.version>Unknown</siteminder.version> -->
-		<aws.maven.version>5.0.0.RELEASE</aws.maven.version>
-		<buildnumber.maven.plugin.version>1.4</buildnumber.maven.plugin.version>
-		<java.version>1.8</java.version>
+        <aws.maven.version>5.0.0.RELEASE</aws.maven.version>
+        <buildnumber.maven.plugin.version>1.4</buildnumber.maven.plugin.version>
+        <java.version>1.8</java.version>
         <maven.clean.version>2.6.1</maven.clean.version>
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
-		<maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-		<maven.gpg.version>1.6</maven.gpg.version>
+        <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
+        <maven.gpg.version>1.6</maven.gpg.version>
         <maven.javadoc.plugin.version>2.10.1</maven.javadoc.plugin.version>
-		<maven.release.plugin.version>2.5.1</maven.release.plugin.version>
+        <maven.release.plugin.version>2.5.1</maven.release.plugin.version>
         <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
-		<maven.scm.plugin.version>1.9.2</maven.scm.plugin.version>
+        <maven.scm.plugin.version>1.9.2</maven.scm.plugin.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
-		<maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-	
+
     <repositories>
         <!-- Maven repository -->
         <repository>
@@ -259,9 +271,9 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-		
+
     </repositories>
-	
+
     <distributionManagement>
         <repository>
             <id>traveliko-releases</id>
@@ -274,19 +286,19 @@
             <url>s3://travelikomavenrepo/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-	
+
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.traveliko</groupId>
                 <artifactId>traveliko-external-bom</artifactId>
-                <version>2.0.56</version>
+                <version>2.0.60</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-		</dependencies>
-	</dependencyManagement>
-	
+        </dependencies>
+    </dependencyManagement>
+
     <profiles>
         <profile>
             <id>release</id>
@@ -296,9 +308,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                         <version>${maven.source.plugin.version}</version>
-						<configuration>
-	                        <attach>false</attach>
-	                    </configuration>
+                        <configuration>
+                            <attach>false</attach>
+                        </configuration>
                     </plugin>
 
                     <plugin>

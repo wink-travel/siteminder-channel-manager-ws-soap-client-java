@@ -13,12 +13,5 @@ pipelines:
           - openssl aes-256-cbc -pass pass:$OPENSSL_PWD -in private-key.gpg.enc -out private-key.gpg -d
           - gpg --import private-key.gpg
           - mvn -V -B -s settings.xml clean deploy
-  release:
-    - step:
-        script:
-          - git config --global user.email "bjorn@harvold.com" 
-          - git config --global user.name "Bjorn Harvold"
-          - openssl aes-256-cbc -pass pass:$OPENSSL_PWD -in private-key.gpg.enc -out private-key.gpg -d
-          - gpg --import private-key.gpg
-          - mvn -V -B -s settings.xml clean release:prepare release:perform
+
           

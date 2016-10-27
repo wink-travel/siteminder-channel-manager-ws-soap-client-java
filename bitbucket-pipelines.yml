@@ -1,0 +1,16 @@
+# Will check out and do an entire release of all our artifacts
+# Last push on 2016-10-13 Fastbooking updates and fixed a bug
+# here we go
+image: pbarnoux/maven-angular
+
+pipelines:
+    branches:
+        develop:
+            - step:
+                script:
+                    - echo "Running Java deployment from develop branch"
+                    - ./runJavaDeploy.bash
+        master:
+            - step:
+                script:
+                    - echo "Do nothing on master"

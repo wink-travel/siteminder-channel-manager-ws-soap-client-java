@@ -8,7 +8,7 @@
     <groupId>com.traveliko</groupId>
     <artifactId>siteminder-cxf-client</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.29</version>
+    <version>3.0.30</version>
     <name>Siteminder CXF Client (JAR)</name>
     <inceptionYear>2013</inceptionYear>
     <organization>
@@ -39,7 +39,7 @@
     <parent>
         <groupId>com.traveliko</groupId>
         <artifactId>traveliko-external-bom</artifactId>
-        <version>3.0.47</version>
+        <version>3.0.48</version>
         <relativePath/>
     </parent>
 
@@ -71,7 +71,7 @@
 							<vmArgs>
 						        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
 						    </vmArgs>
-							<packageName>com.traveliko.ws.siteminder</packageName>
+							<packageName>com.traveliko.platform.ws.siteminder</packageName>
                             <genJWS>false</genJWS>
                             <wsdlDirectory>${basedir}/src/wsdl</wsdlDirectory>
                             <wsdlFiles>

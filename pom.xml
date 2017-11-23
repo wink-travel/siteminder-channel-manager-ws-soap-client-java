@@ -71,7 +71,7 @@
 							<vmArgs>
 						        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
 						    </vmArgs>
-							<packageName>com.traveliko.ws.siteminder</packageName>
+							<packageName>com.traveliko.platform.ws.siteminder</packageName>
                             <genJWS>false</genJWS>
                             <wsdlDirectory>${basedir}/src/wsdl</wsdlDirectory>
                             <wsdlFiles>

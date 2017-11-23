@@ -39,7 +39,7 @@
     <parent>
         <groupId>com.traveliko</groupId>
         <artifactId>traveliko-external-bom</artifactId>
-        <version>3.0.47</version>
+        <version>3.0.48</version>
         <relativePath/>
     </parent>
 

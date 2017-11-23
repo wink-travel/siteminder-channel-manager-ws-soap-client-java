@@ -8,7 +8,7 @@
     <groupId>com.traveliko</groupId>
     <artifactId>siteminder-cxf-client</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.28</version>
+    <version>3.0.29</version>
     <name>Siteminder CXF Client (JAR)</name>
     <inceptionYear>2013</inceptionYear>
     <organization>
@@ -39,7 +39,7 @@
     <parent>
         <groupId>com.traveliko</groupId>
         <artifactId>traveliko-external-bom</artifactId>
-        <version>3.0.40</version>
+        <version>3.0.47</version>
         <relativePath/>
     </parent>
 
@@ -56,7 +56,6 @@
 
             <!-- TODO Only needs to be enabled when we upgrade Siteminder's WSDL version -->
 
-			<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
@@ -83,7 +82,6 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
 
         </plugins>
 

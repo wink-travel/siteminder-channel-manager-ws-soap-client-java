@@ -56,7 +56,6 @@
 
             <!-- TODO Only needs to be enabled when we upgrade Siteminder's WSDL version -->
 
-			<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
@@ -83,7 +82,6 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
 
         </plugins>
 

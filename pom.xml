@@ -8,7 +8,7 @@
     <groupId>com.traveliko</groupId>
     <artifactId>siteminder-cxf-client</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.30</version>
+    <version>3.0.31</version>
     <name>Siteminder CXF Client (JAR)</name>
     <inceptionYear>2013</inceptionYear>
     <organization>
@@ -44,17 +44,16 @@
     </parent>
 
     <build>
-
+        <!--
         <resources>
             <resource>
                 <filtering>false</filtering>
                 <directory>src/wsdl</directory>
             </resource>
         </resources>
+		-->
 
         <plugins>
-
-            <!-- TODO Only needs to be enabled when we upgrade Siteminder's WSDL version -->
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -68,16 +67,20 @@
                             <goal>wsimport</goal>
                         </goals>
                         <configuration>
-							<vmArgs>
-						        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-						    </vmArgs>
-							<packageName>com.traveliko.platform.ws.siteminder</packageName>
+							<xjcArgs>
+	                            <xjcArg>-XautoNameResolution</xjcArg>
+	                        </xjcArgs>
                             <genJWS>false</genJWS>
-                            <wsdlDirectory>${basedir}/src/wsdl</wsdlDirectory>
+							<packageName>com.traveliko.platform.ws.siteminder</packageName>
+                            <wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
                             <wsdlFiles>
                                 <wsdlFile>siteconnect.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <wsdlLocation>classpath:cxf/siteconnect.wsdl</wsdlLocation>
+                            <wsdlLocation>classpath:wsdl/siteconnect.wsdl</wsdlLocation>
+							<vmArgs>
+								<vmArg>-Djavax.xml.accessExternalDTD=all</vmArg>
+						        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+						    </vmArgs>
                         </configuration>
                     </execution>
                 </executions>

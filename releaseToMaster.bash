@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Copyright (c) 2021. wink.travel. All rights Reserved.
+# Copyright (c) 2023. wink.travel. All rights Reserved.
 #
 
 echo "Releasing siteminder-channel-manager-web-services-client..."

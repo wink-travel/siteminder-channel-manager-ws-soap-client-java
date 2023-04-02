@@ -2,7 +2,44 @@
 
 Changelog of siteminder-channel-manager-ws-soap-client-java.
 
-## 5.0.0 (2023-04-02)
+## 6.0.0 (2023-04-02)
+
+### Other changes
+
+**Merge branch 'release/6.0.0'**
+
+
+[46378](https://github.com/wink-travel/siteminder-channel-manager-ws-soap-client-java/commit/46378c0bd578116) Bjorn Harvold *2023-04-02 12:39:46*
+
+**Update versions for release**
+
+
+[2a9b1](https://github.com/wink-travel/siteminder-channel-manager-ws-soap-client-java/commit/2a9b120b52d826e) Bjorn Harvold *2023-04-02 12:39:46*
+
+**:bookmark: build: Committing updated pom.xml files and CHANGELOG.md.**
+
+
+[e2fa1](https://github.com/wink-travel/siteminder-channel-manager-ws-soap-client-java/commit/e2fa16fee62b717) Bjorn Harvold *2023-04-02 12:39:43*
+
+**:arrow_up: build: Migrating to Jakarta EE**
+
+* BREAKING CHANGE: This breaks the prior 4.x branch 
+
+[2f1ef](https://github.com/wink-travel/siteminder-channel-manager-ws-soap-client-java/commit/2f1ef8518cb32dc) Bjorn Harvold *2023-04-02 12:39:21*
+
+**Update for next development version**
+
+
+[c0f8a](https://github.com/wink-travel/siteminder-channel-manager-ws-soap-client-java/commit/c0f8a0d83a47ff4) Bjorn Harvold *2023-04-02 12:38:39*
+
+**Merge tag '5.0.0' into develop**
+
+* Tag release 
+
+[64c80](https://github.com/wink-travel/siteminder-channel-manager-ws-soap-client-java/commit/64c8063e7ebd11d) Bjorn Harvold *2023-04-02 12:38:37*
+
+
+## v5.0.0 (2023-04-02)
 
 ### Other changes
 

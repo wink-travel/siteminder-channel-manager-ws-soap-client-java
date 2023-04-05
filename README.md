@@ -13,7 +13,7 @@ You can use this code in one of two ways:
 ```
 <dependency>
     <groupId>travel.wink</groupId>
-    <artifactId>siteminder-channel-manager-sw-soap-client-java</artifactId>
+    <artifactId>siteminder-channel-manager-ws-soap-client-java</artifactId>
     <version>{{SEE RELEASES}}</version>
 </dependency>
 ```
